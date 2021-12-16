@@ -1,0 +1,58 @@
+{
+  "occupations": [
+    {
+      "name": "Programmer",
+      "income": 30000
+    },
+    {
+      "name": "Teacher",
+      "income": 27000
+    },
+    {
+      "name": "Cashier",
+      "income": 25000
+    }
+  ],
+  "basicLocationTaxRate": [
+    {
+      "stockholm": [
+        {
+          "incomeYear": "2020",
+          "incomeYearTax": "0.71"
+        },
+        {
+          "incomeYear": "2019",
+          "incomeYearTax": "0.7"
+        }
+      ]
+    },
+    {
+      "gothenburg": [
+        {
+          "incomeYear": "2020",
+          "incomeYearTax": "0.78"
+        },
+        {
+          "incomeYear": "2019",
+          "incomeYearTax": "0.75"
+        }
+      ]
+    }
+  ],
+  "extraHighIncomeTax": [
+    {
+      "highTaxRate": 36000,
+      "taxRate": 0.50
+    },
+    {
+      "highTaxRate": 45000,
+      "taxRate": 0.3
+    }
+  ],
+  "experience": {
+    "0-3": 1,
+    "4-7": 1.2,
+    "8-10": 1.4,
+    "11": 1.6
+  }
+}

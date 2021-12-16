@@ -1,0 +1,33 @@
+<div id="container">
+  <h1>Payroll Calculator</h1>
+  <form>
+    <!-- <select>
+    <option *ngFor="let occupation of occupations">{{occupation.name}}</option>
+  </select> -->
+    <div class="form-field">
+      <label class="label">Experience</label>
+      <input class="select" type="number" min="0" max="100">
+    </div>
+    <div class="form-field">
+      <label for="cars" class="label">Occupation</label>
+      <select class="select">
+        <option *ngFor="let occupation of occupations">{{occupation.value["name"]}}</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="cars">Occupation</label>
+      <select>
+        <option *ngFor="let basicLocationTaxRate of basicLocationTaxRates | keyvalue">{{basicLocationTaxRate}}</option>
+      </select>
+    </div>
+    <div>
+    </div>
+    <!-- <select>
+    <option *ngFor="let incomeYear of incomeYears | keyvalue">{{incomeYear.value[""]}}</option>
+  </select> -->
+    <!--  <select>
+    <option *ngFor="let city of cities | keyvalue">{{city.key}}</option>
+  </select> -->
+
+  </form>
+</div>
