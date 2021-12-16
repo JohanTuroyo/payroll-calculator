@@ -6,28 +6,28 @@
   </select> -->
     <div class="form-field">
       <label class="label">Experience</label>
-      <input class="select" type="number" min="0" max="100">
+      <input class="select" required type="number" min="0" max="100">
     </div>
     <div class="form-field">
       <label for="cars" class="label">Occupation</label>
-      <select class="select">
-        <option *ngFor="let occupation of occupations">{{occupation.value["name"]}}</option>
+      <select class="select" required [(ngModel)]="occupation" name="occupation">
+        <option *ngFor="let occupation of data.occupations" >{{occupation.name}}</option>
       </select>
     </div>
     <div class="form-field">
-      <label for="cars">Occupation</label>
-      <select>
-        <option *ngFor="let basicLocationTaxRate of basicLocationTaxRates | keyvalue">{{basicLocationTaxRate}}</option>
+      <label for="cars" class="label">City</label>
+      <select class="select" required [(ngModel)]="city" name="city">
+        <option *ngFor="let basicLocationTaxRate of data.basicLocationTaxRate">{{basicLocationTaxRate.city}}</option>
       </select>
     </div>
-    <div>
+   <div>
     </div>
-    <!-- <select>
-    <option *ngFor="let incomeYear of incomeYears | keyvalue">{{incomeYear.value[""]}}</option>
-  </select> -->
-    <!--  <select>
-    <option *ngFor="let city of cities | keyvalue">{{city.key}}</option>
-  </select> -->
-
+    <label for="cars" class="label">Income Year</label>
+    <select class="select" required [(ngModel)]="incomeYear" name="incomeYear">
+    <option *ngFor="let basicLocationTaxRate of data.basicLocationTaxRate">{{basicLocationTaxRate.incomeYear}}</option>
+  </select>
+  <div>
+  <button type="submit">Calculate Salary</button>
+</div>
   </form>
 </div>

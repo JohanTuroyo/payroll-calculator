@@ -15,28 +15,24 @@
   ],
   "basicLocationTaxRate": [
     {
-      "stockholm": [
-        {
-          "incomeYear": "2020",
-          "incomeYearTax": "0.71"
-        },
-        {
-          "incomeYear": "2019",
-          "incomeYearTax": "0.7"
-        }
-      ]
+      "incomeYear": "2020",
+      "incomeAfterTaxPercentage": "0.71",
+      "city": "Stockholm"
     },
     {
-      "gothenburg": [
-        {
-          "incomeYear": "2020",
-          "incomeYearTax": "0.78"
-        },
-        {
-          "incomeYear": "2019",
-          "incomeYearTax": "0.75"
-        }
-      ]
+      "incomeYear": "2019",
+      "incomeAfterTaxPercentage": "0.7",
+      "city": "Stockholm"
+    },
+    {
+      "incomeYear": "2020",
+      "incomeAfterTaxPercentage": "0.78",
+      "city": "Göteborg"
+    },
+    {
+      "incomeYear": "2019",
+      "incomeAfterTaxPercentage": "0.75",
+      "city": "Göteborg"
     }
   ],
   "extraHighIncomeTax": [
