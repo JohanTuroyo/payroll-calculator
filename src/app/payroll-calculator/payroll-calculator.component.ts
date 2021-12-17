@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PayrollDataService } from './service/payroll-data-service.component';
 
 export class PayRollFormModel {

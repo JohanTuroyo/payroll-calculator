@@ -5,59 +5,58 @@
     <div class="mb-2">
       <div class="form-group mb-5">
         <label>Experience</label>
-        <input id="experience-input" type="number" name="experience" class="form-control"
+        <input id="experience-input" type="number" min="0" max="100" name="payRollFormModel.experience" class="form-control"
           [(ngModel)]="payRollFormModel.experience" #experience="ngModel" placeholder="Experience"
+          pattern="^$|^([0-9]|[1-9][0-9]|[1][0][0])?" required #rateInput2="ngModel" name="payRollFormModel.experience"
           [ngClass]="{ 'is-invalid': payrollForm.submitted && experience.invalid }" required>
-
         <div class="invalid-feedback" *ngIf="payrollForm.submitted && experience.invalid">
-          <p class="validation-message" *ngIf="experience.errors?.required">Experience is required</p>
+          <p class="validation-message" *ngIf="experience.errors?.required || rateInput2.errors && (rateInput2.dirty || rateInput2.touched)">Experience is required & Number should be between 0 and 100</p>
         </div>
       </div>
 
+    <div class="form-group mb-5">
+      <label class="form-label">Occupation</label>
+      <select id="occupation-select" name="occupation" class="form-select" [(ngModel)]="payRollFormModel.occupation"
+        #occupation="ngModel" required>
+        <!-- <option value="undefined" selected disabled>Please select</option> -->
+        <option *ngFor="let occupation of data.occupations">{{occupation.name}}</option>
+      </select>
 
-      <div class="form-group mb-5">
-        <label class="form-label">Occupation</label>
-        <select id="occupation-select" name="occupation" class="form-select" [(ngModel)]="payRollFormModel.occupation"
-          #occupation="ngModel" required>
-          <option value="undefined" selected disabled>Please select</option>
-          <option *ngFor="let occupation of data.occupations">{{occupation.name}}</option>
-        </select>
-
-        <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && occupation.invalid">
-          <p class="validation-message" *ngIf="occupation.errors?.required">Occupation is required</p>
-        </div>
-      </div>
-
-      <div class="form-group mb-5">
-        <label class="form-label">City</label>
-        <select id="city-select" name="city" class="form-select" [(ngModel)]="payRollFormModel.city" #city="ngModel"
-          required>
-          <option value="undefined" selected disabled>Please select</option>
-          <option *ngFor="let city of data.cities">{{city.name}}</option>
-        </select>
-
-        <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && city.invalid">
-          <p class="validation-message" *ngIf="city.errors?.required">City is required</p>
-        </div>
-      </div>
-
-      <div class="form-group mb-5">
-        <label class="form-label">Income Year</label>
-        <select id="income-year-select" name="incomeYear" class="form-select" [(ngModel)]="payRollFormModel.incomeYear"
-          #incomeYear="ngModel" required>
-          <option value="undefined" selected disabled>Please select</option>
-          <option *ngFor="let incomeYear of incomeYearOptions">{{incomeYear}}
-          </option>
-        </select>
-
-        <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && incomeYear.invalid">
-          <p class="validation-message" *ngIf="incomeYear.errors?.required">Income year is required</p>
-        </div>
+      <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && occupation.invalid">
+        <p class="validation-message" *ngIf="occupation.errors?.required">Occupation is required</p>
       </div>
     </div>
 
-    <div class="form-group">
-      <button class="btn btn-primary btn-block">Submit</button>
+    <div class="form-group mb-5">
+      <label class="form-label">City</label>
+      <select id="city-select" name="city" class="form-select" [(ngModel)]="payRollFormModel.city" #city="ngModel"
+        required>
+        <!-- <option value="undefined" selected disabled>Please select</option> -->
+        <option *ngFor="let city of data.cities">{{city.name}}</option>
+      </select>
+
+      <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && city.invalid">
+        <p class="validation-message" *ngIf="city.errors?.required">City is required</p>
+      </div>
     </div>
-  </form>
+
+    <div class="form-group mb-5">
+      <label class="form-label">Income Year</label>
+      <select id="income-year-select" name="incomeYear" class="form-select" [(ngModel)]="payRollFormModel.incomeYear"
+        #incomeYear="ngModel" required>
+        <!-- <option value="undefined" selected disabled>Please select</option> -->
+        <option *ngFor="let incomeYear of incomeYearOptions">{{incomeYear}}
+        </option>
+      </select>
+
+      <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && incomeYear.invalid">
+        <p class="validation-message" *ngIf="incomeYear.errors?.required">Income year is required</p>
+      </div>
+    </div>
+</div>
+
+<div class="form-group">
+  <button class="btn btn-primary btn-block">Submit</button>
+</div>
+</form>
 </div>
