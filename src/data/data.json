@@ -1,38 +1,51 @@
 {
   "occupations": [
     {
+      "id": 1,
       "name": "Programmer",
       "income": 30000
     },
     {
+      "id": 2,
       "name": "Teacher",
       "income": 27000
     },
     {
+      "id": 3,
       "name": "Cashier",
       "income": 25000
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "Stockholm"
+    },
+    {
+      "id": 2,
+      "name": "Göteborg"
     }
   ],
   "basicLocationTaxRate": [
     {
       "incomeYear": "2020",
       "incomeAfterTaxPercentage": "0.71",
-      "city": "Stockholm"
+      "cityId": "1"
     },
     {
       "incomeYear": "2019",
       "incomeAfterTaxPercentage": "0.7",
-      "city": "Stockholm"
+      "cityId": "1"
     },
     {
       "incomeYear": "2020",
       "incomeAfterTaxPercentage": "0.78",
-      "city": "Göteborg"
+      "cityId": "2"
     },
     {
       "incomeYear": "2019",
       "incomeAfterTaxPercentage": "0.75",
-      "city": "Göteborg"
+      "cityId": "2"
     }
   ],
   "extraHighIncomeTax": [

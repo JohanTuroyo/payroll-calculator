@@ -1,33 +1,63 @@
-<div id="container">
+<div class="container">
   <h1>Payroll Calculator</h1>
-  <form>
-    <!-- <select>
-    <option *ngFor="let occupation of occupations">{{occupation.name}}</option>
-  </select> -->
-    <div class="form-field">
-      <label class="label">Experience</label>
-      <input class="select" required type="number" min="0" max="100">
+
+  <form #payrollForm="ngForm" (ngSubmit)="payrollForm.form.valid && onSubmit(payrollForm.value)">
+    <div class="mb-2">
+      <div class="form-group mb-5">
+        <label>Experience</label>
+        <input id="experience-input" type="number" name="experience" class="form-control"
+          [(ngModel)]="payRollFormModel.experience" #experience="ngModel" placeholder="Experience"
+          [ngClass]="{ 'is-invalid': payrollForm.submitted && experience.invalid }" required>
+
+        <div class="invalid-feedback" *ngIf="payrollForm.submitted && experience.invalid">
+          <p class="validation-message" *ngIf="experience.errors?.required">Experience is required</p>
+        </div>
+      </div>
+
+
+      <div class="form-group mb-5">
+        <label class="form-label">Occupation</label>
+        <select id="occupation-select" name="occupation" class="form-select" [(ngModel)]="payRollFormModel.occupation"
+          #occupation="ngModel" required>
+          <option value="undefined" selected disabled>Please select</option>
+          <option *ngFor="let occupation of data.occupations">{{occupation.name}}</option>
+        </select>
+
+        <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && occupation.invalid">
+          <p class="validation-message" *ngIf="occupation.errors?.required">Occupation is required</p>
+        </div>
+      </div>
+
+      <div class="form-group mb-5">
+        <label class="form-label">City</label>
+        <select id="city-select" name="city" class="form-select" [(ngModel)]="payRollFormModel.city" #city="ngModel"
+          required>
+          <option value="undefined" selected disabled>Please select</option>
+          <option *ngFor="let city of data.cities">{{city.name}}</option>
+        </select>
+
+        <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && city.invalid">
+          <p class="validation-message" *ngIf="city.errors?.required">City is required</p>
+        </div>
+      </div>
+
+      <div class="form-group mb-5">
+        <label class="form-label">Income Year</label>
+        <select id="income-year-select" name="incomeYear" class="form-select" [(ngModel)]="payRollFormModel.incomeYear"
+          #incomeYear="ngModel" required>
+          <option value="undefined" selected disabled>Please select</option>
+          <option *ngFor="let incomeYear of incomeYearOptions">{{incomeYear}}
+          </option>
+        </select>
+
+        <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && incomeYear.invalid">
+          <p class="validation-message" *ngIf="incomeYear.errors?.required">Income year is required</p>
+        </div>
+      </div>
     </div>
-    <div class="form-field">
-      <label for="cars" class="label">Occupation</label>
-      <select class="select" required [(ngModel)]="occupation" name="occupation">
-        <option *ngFor="let occupation of data.occupations" >{{occupation.name}}</option>
-      </select>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Submit</button>
     </div>
-    <div class="form-field">
-      <label for="cars" class="label">City</label>
-      <select class="select" required [(ngModel)]="city" name="city">
-        <option *ngFor="let basicLocationTaxRate of data.basicLocationTaxRate">{{basicLocationTaxRate.city}}</option>
-      </select>
-    </div>
-   <div>
-    </div>
-    <label for="cars" class="label">Income Year</label>
-    <select class="select" required [(ngModel)]="incomeYear" name="incomeYear">
-    <option *ngFor="let basicLocationTaxRate of data.basicLocationTaxRate">{{basicLocationTaxRate.incomeYear}}</option>
-  </select>
-  <div>
-  <button type="submit">Calculate Salary</button>
-</div>
   </form>
 </div>
