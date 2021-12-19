@@ -2,17 +2,28 @@
   "occupations": [
     {
       "id": 1,
-      "name": "Programmer",
-      "income": 30000
+      "name": "Programmer"
     },
     {
       "id": 2,
-      "name": "Teacher",
-      "income": 27000
+      "name": "Teacher"
     },
     {
       "id": 3,
-      "name": "Cashier",
+      "name": "Cashier"
+    }
+  ],
+  "incomes": [
+    {
+      "occupationId": 1,
+      "income": 30000
+    },
+    {
+      "occupationId": 2,
+      "income": 27000
+    },
+    {
+      "occupationId": 3,
       "income": 25000
     }
   ],
@@ -23,45 +34,67 @@
     },
     {
       "id": 2,
-      "name": "Göteborg"
+      "name": "Gothenburg"
     }
   ],
-  "basicLocationTaxRate": [
+  "incomeTaxes": [
     {
-      "incomeYear": "2020",
-      "incomeAfterTaxPercentage": "0.71",
-      "cityId": "1"
+      "incomeYear": 2019,
+      "tax": [
+        {
+          "cityId": 1,
+          "incomeAfterTaxPercentage": 0.7
+        },
+        {
+          "incomeAfterTaxPercentage": 0.75,
+          "cityId": 2
+        }
+      ]
     },
     {
-      "incomeYear": "2019",
-      "incomeAfterTaxPercentage": "0.7",
-      "cityId": "1"
-    },
-    {
-      "incomeYear": "2020",
-      "incomeAfterTaxPercentage": "0.78",
-      "cityId": "2"
-    },
-    {
-      "incomeYear": "2019",
-      "incomeAfterTaxPercentage": "0.75",
-      "cityId": "2"
+      "incomeYear": 2020,
+      "tax": [
+        {
+          "cityId": 1,
+          "incomeAfterTaxPercentage": 0.71
+        },
+        {
+          "incomeAfterTaxPercentage": 0.78,
+          "cityId": 2
+        }
+      ]
     }
   ],
-  "extraHighIncomeTax": [
-    {
+  "extraHighIncomeTax": {
+    "lowerTaxRate": {
       "highTaxRate": 36000,
-      "taxRate": 0.50
+      "incomeAfterTaxPercentage": 0.50
+    },
+    "higherTaxRate": {
+      "highTaxRate": 45000,
+      "incomeAfterTaxPercentage": 0.30
+    }
+  },
+  "experiences": [
+    {
+      "from": 0,
+      "to": 3,
+      "percentageGain": 1
     },
     {
-      "highTaxRate": 45000,
-      "taxRate": 0.3
+      "from": 4,
+      "to": 7,
+      "percentageGain": 1.2
+    },
+    {
+      "from": 8,
+      "to": 10,
+      "percentageGain": 1.4
+    },
+    {
+      "from": 11,
+      "to": 100,
+      "percentageGain": 1.6
     }
-  ],
-  "experience": {
-    "0-3": 1,
-    "4-7": 1.2,
-    "8-10": 1.4,
-    "11": 1.6
-  }
+  ]
 }

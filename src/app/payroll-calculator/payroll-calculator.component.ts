@@ -1,12 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PayrollData } from './model/PayrollData.model';
+import { PayrollFormModel } from './model/PayrollFormModel.model';
 import { PayrollDataService } from './service/payroll-data-service.component';
-
-export class PayRollFormModel {
-  public experience: number;
-  public occupation: string
-  public city: string
-  public incomeYear: string;
-}
 
 @Component({
   selector: 'app-payroll-calculator',
@@ -15,27 +10,21 @@ export class PayRollFormModel {
   providers: [PayrollDataService]
 })
 export class PayrollCalculatorComponent implements OnInit {
-  data: any
-  payRollFormModel: PayRollFormModel;
+  data: PayrollData;
+  payRollFormModel: PayrollFormModel;
   incomeYearOptions: number[];
+  salaryAfterTaxes: string;
 
-  constructor(private payrollDataService: PayrollDataService) {
-  }
+  constructor(private payrollDataService: PayrollDataService) { }
 
   ngOnInit(): void {
+    this.payRollFormModel = new PayrollFormModel();
     this.data = this.payrollDataService.getData();
-
-    const years = this.data.basicLocationTaxRate
-      .map((tax: any) => tax.incomeYear)
-
-    this.incomeYearOptions = [... new Set(years)] as number[];
-
-
-
-    this.payRollFormModel = new PayRollFormModel();
+    this.incomeYearOptions = this.data.incomeTaxes.map((income: any) => income.incomeYear);
   }
 
-  onSubmit(value: PayRollFormModel) {
-    console.log(value)
+  onSubmit(): void {
+    this.salaryAfterTaxes = this.payrollDataService.calculatePayRoll(this.data, this.payRollFormModel)
+      .toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 }
