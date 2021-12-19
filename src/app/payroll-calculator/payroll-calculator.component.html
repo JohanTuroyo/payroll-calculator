@@ -20,7 +20,7 @@
         <select id="occupation-select" name="occupation" class="form-select" [(ngModel)]="payRollFormModel.occupation"
           #occupation="ngModel" required>
           <option value="undefined" selected disabled>Please select</option>
-          <option *ngFor="let occupation of data.occupations">{{occupation.name}}</option>
+          <option *ngFor="let occupation of data.occupations" [ngValue]="occupation">{{occupation.name}}</option>
         </select>
 
         <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && occupation.invalid">
@@ -33,7 +33,7 @@
         <select id="city-select" name="city" class="form-select" [(ngModel)]="payRollFormModel.city" #city="ngModel"
           required>
           <option value="undefined" selected disabled>Please select</option>
-          <option *ngFor="let city of data.cities">{{city.name}}</option>
+          <option *ngFor="let city of data.cities" [ngValue]="city">{{city.name}}</option>
         </select>
 
         <div class="invalid-feedback d-block" *ngIf="payrollForm.submitted && city.invalid">
