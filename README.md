@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
 
+## Project built with
+- Angular
+- TypeScript
+- HTML
+- SCSS
+- Bootstrap 5 ( For simplifying the designing, making it more robust and responsive )
+
 ## Development server
 Run `npm install` First time using this project.
 
