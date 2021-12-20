@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BasicTaxRate } from './model/BasicTaxRate.model';
+import { BasicTaxRate } from './model/basicTaxRate.model';
 import { PayrollData } from './model/payrollData.model';
 import { PayrollFormModel } from './model/payrollFormModel.model';
 import { PayrollDataService } from './service/payroll-data-service.component';

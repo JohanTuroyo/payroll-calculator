@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Experience } from '../model/experience.model';
 import { Income } from '../model/income.model';
-import { BasicTaxRate } from '../model/BasicTaxRate.model';
+import { BasicTaxRate } from '../model/basicTaxRate.model';
 import { PayrollData } from '../model/payrollData.model';
 import { PayrollFormModel } from '../model/payrollFormModel.model';
 import { Tax } from '../model/tax.model';
@@ -69,6 +69,6 @@ export class PayrollDataService {
   }
 
   standardTaxRateCalculation(salaryBeforeTaxed: number, basicTaxRate: Tax): number {
-    return salaryBeforeTaxed * basicTaxRate.incomeAfterTaxPercentage;
+    return basicTaxRate.incomeAfterTaxPercentage * salaryBeforeTaxed;
   }
 }

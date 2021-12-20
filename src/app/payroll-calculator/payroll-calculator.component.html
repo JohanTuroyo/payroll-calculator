@@ -12,7 +12,7 @@
           [ngClass]="{ 'is-invalid': payrollForm.submitted && experience.invalid }" required>
         <div class="invalid-feedback" *ngIf="payrollForm.submitted && experience.invalid">
           <p class="validation-message"
-            *ngIf="experience.errors?.required || rateInput2.errors && (rateInput2.dirty || rateInput2.touched)">
+            *ngIf="experience.errors?.required || experience.errors && (experience.dirty || experience.touched)">
             Experience is required & Number should be between 0 and 100</p>
         </div>
       </div>
