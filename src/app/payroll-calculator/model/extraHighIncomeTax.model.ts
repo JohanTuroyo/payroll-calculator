@@ -1,6 +1,6 @@
 import { HighIncomeTax } from "./highIncomeTax.model";
 
-export class ExtraHighIncomeTax {
-  public lowerTaxRate: HighIncomeTax;
-  public higherTaxRate: HighIncomeTax;
+export interface ExtraHighIncomeTax {
+  lowerTaxRate: HighIncomeTax;
+  higherTaxRate: HighIncomeTax;
 }

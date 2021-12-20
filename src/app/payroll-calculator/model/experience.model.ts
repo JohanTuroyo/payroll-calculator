@@ -1,5 +1,5 @@
-export class Experience {
-  public from: number;
-  public to: number;
-  public percentageGain: number;
+export interface Experience {
+  from: number;
+  to: number;
+  percentageGain: number;
 }

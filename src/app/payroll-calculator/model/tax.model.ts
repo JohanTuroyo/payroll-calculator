@@ -1,4 +1,4 @@
-export class Tax {
-  public cityId: number;
-  public incomeAfterTaxPercentage: number;
+export interface Tax {
+  cityId: number;
+  incomeAfterTaxPercentage: number;
 }

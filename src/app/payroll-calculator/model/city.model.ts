@@ -1,4 +1,4 @@
-export class City {
-  public id: number;
-  public name: string;
+export interface City {
+  id: number;
+  name: string;
 }

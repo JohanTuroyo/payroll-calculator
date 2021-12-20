@@ -1,4 +1,4 @@
-export class Income {
-  public occupationId: number;
-  public salary: number;
+export interface Income {
+  occupationId: number;
+  salary: number;
 }

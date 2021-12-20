@@ -22,10 +22,9 @@ export class PayrollCalculatorComponent implements OnInit {
     this.payRollFormModel = new PayrollFormModel();
     this.data = this.payrollDataService.getData();
     this.incomeYearOptions = this.data.basicTaxRates.map((income: BasicTaxRate) => income.incomeYear);
-    console.log(this.payRollFormModel)
   }
 
   onSubmit(): void {
-    this.salaryAfterTaxes = this.payrollDataService.calculatePayRoll(this.data, this.payRollFormModel);
+    this.salaryAfterTaxes = this.payrollDataService.calculatePayRoll(this.payRollFormModel);
   }
 }

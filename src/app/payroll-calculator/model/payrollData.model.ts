@@ -6,10 +6,10 @@ import { BasicTaxRate } from "./basicTaxRate.model";
 import { Occupation } from "./occupation.model";
 
 export class PayrollData {
-  public occupations: Occupation[];
-  public incomes: Income[];
-  public cities: City[];
-  public basicTaxRates: BasicTaxRate[];
-  public extraHighIncomeTaxes: ExtraHighIncomeTax;
-  public experiences: Experience[];
+  occupations: Occupation[];
+  incomes: Income[];
+  cities: City[];
+  basicTaxRates: BasicTaxRate[];
+  extraHighIncomeTax: ExtraHighIncomeTax;
+  experiences: Experience[];
 }

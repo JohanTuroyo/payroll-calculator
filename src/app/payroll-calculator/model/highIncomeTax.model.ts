@@ -1,4 +1,4 @@
-export class HighIncomeTax {
-  public fromSalaryTaxed: number;
-  public incomeAfterTaxPercentage: number;
+export interface HighIncomeTax {
+  fromSalaryTaxed: number;
+  incomeAfterTaxPercentage: number;
 }

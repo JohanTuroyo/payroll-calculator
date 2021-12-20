@@ -39,19 +39,6 @@
   ],
   "basicTaxRates": [
     {
-      "incomeYear": 2019,
-      "taxes": [
-        {
-          "cityId": 1,
-          "incomeAfterTaxPercentage": 0.7
-        },
-        {
-          "incomeAfterTaxPercentage": 0.75,
-          "cityId": 2
-        }
-      ]
-    },
-    {
       "incomeYear": 2020,
       "taxes": [
         {
@@ -63,9 +50,22 @@
           "cityId": 2
         }
       ]
+    },
+    {
+      "incomeYear": 2019,
+      "taxes": [
+        {
+          "cityId": 1,
+          "incomeAfterTaxPercentage": 0.7
+        },
+        {
+          "incomeAfterTaxPercentage": 0.75,
+          "cityId": 2
+        }
+      ]
     }
   ],
-  "extraHighIncomeTaxes": {
+  "extraHighIncomeTax": {
     "lowerTaxRate": {
       "fromSalaryTaxed": 36000,
       "incomeAfterTaxPercentage": 0.50

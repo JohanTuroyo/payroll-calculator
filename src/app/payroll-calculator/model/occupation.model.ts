@@ -1,5 +1,5 @@
-export class Occupation {
-  public id: number;
-  public name: string;
-  public incomeId: number;
+export interface Occupation {
+  id: number;
+  name: string;
+  incomeId: number;
 }

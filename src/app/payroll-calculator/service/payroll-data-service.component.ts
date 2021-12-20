@@ -17,7 +17,9 @@ export class PayrollDataService {
     return data;
   }
 
-  calculatePayRoll(data: PayrollData, payrollModel: PayrollFormModel): number {
+  calculatePayRoll(payrollModel: PayrollFormModel): number {
+    const data = this.getData();
+
     const basicTaxRate = data.basicTaxRates
       .filter((income: BasicTaxRate) => income.incomeYear == payrollModel.incomeYear)
       .flatMap((basicTaxRate: BasicTaxRate) => basicTaxRate.taxes)
@@ -40,8 +42,8 @@ export class PayrollDataService {
 
     let salaryBeforeTaxed = income.salary * experience.percentageGain;
 
-    const higherTaxRate = data.extraHighIncomeTaxes.higherTaxRate;
-    const lowerTaxRate = data.extraHighIncomeTaxes.lowerTaxRate;
+    const higherTaxRate = data.extraHighIncomeTax.higherTaxRate;
+    const lowerTaxRate = data.extraHighIncomeTax.lowerTaxRate;
 
     let salaryAfterTax = 0;
 
@@ -50,7 +52,7 @@ export class PayrollDataService {
       salaryBeforeTaxed = higherTaxRate.fromSalaryTaxed;
     }
 
-    if (salaryBeforeTaxed > data.extraHighIncomeTaxes.lowerTaxRate.fromSalaryTaxed) {
+    if (salaryBeforeTaxed > lowerTaxRate.fromSalaryTaxed) {
       salaryAfterTax += this.lowerTaxRateCalculation(lowerTaxRate, salaryBeforeTaxed);
       salaryBeforeTaxed = lowerTaxRate.fromSalaryTaxed;
     }
