@@ -1,56 +1,74 @@
 import { Injectable } from '@angular/core';
-import { PayrollFormModel } from '../model/PayrollFormModel.model';
+import { Experience } from '../model/experience.model';
+import { Income } from '../model/income.model';
+import { BasicTaxRate } from '../model/BasicTaxRate.model';
+import { PayrollData } from '../model/payrollData.model';
+import { PayrollFormModel } from '../model/payrollFormModel.model';
+import { Tax } from '../model/tax.model';
+import { HighIncomeTax } from '../model/highIncomeTax.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PayrollDataService {
 
-  getData() {
-    const data = require('../../../data/data.json');
+  getData(): PayrollData {
+    const data = require('../../../data/data.json') as PayrollData;
     return data;
   }
 
-  calculatePayRoll(data: any, payrollModel: PayrollFormModel): number {
-    const a = data.incomeTaxes
-      .filter((income: any) => income.incomeYear == payrollModel.incomeYear)
-      .flatMap((a: any) => a.tax)
-      .find((b: any) => b.cityId === payrollModel.city.id)
+  calculatePayRoll(data: PayrollData, payrollModel: PayrollFormModel): number {
+    const basicTaxRate = data.basicTaxRates
+      .filter((income: BasicTaxRate) => income.incomeYear == payrollModel.incomeYear)
+      .flatMap((basicTaxRate: BasicTaxRate) => basicTaxRate.taxes)
+      .find((tax: Tax) => tax.cityId === payrollModel.city.id);
 
-    const exp = data.experiences.find((experience: any) => payrollModel.experience >= experience.from && payrollModel.experience <= experience.to)
+    const experience = data.experiences
+      .find((experience: Experience) => payrollModel.experience >= experience.from && payrollModel.experience <= experience.to)
 
-    let salaryBeforeTaxed = data.incomes.find((income: any) => income.occupationId == payrollModel.occupation.id).income * exp.percentageGain;
+    const income = data.incomes
+      .find((income: Income) => income.occupationId == payrollModel.occupation.id);
+
+    if (experience && income && basicTaxRate) {
+      return this.calculateSalaryAfterTaxes(data, income, experience, basicTaxRate);
+    } else {
+      throw new Error('System Error - Could Not Calculate Payroll');
+    }
+  }
+
+  calculateSalaryAfterTaxes(data: PayrollData, income: Income, experience: Experience, basicTaxRate: Tax): number {
+
+    let salaryBeforeTaxed = income.salary * experience.percentageGain;
+
+    const higherTaxRate = data.extraHighIncomeTaxes.higherTaxRate;
+    const lowerTaxRate = data.extraHighIncomeTaxes.lowerTaxRate;
 
     let salaryAfterTax = 0;
 
-    // TODO - finare kod, alltså skapa mindre variabler ur de längre
-    // FIXME - Fixa Read ME
-    // ändra namn på de dåliga variabel namn O A etc..
-
-    if (salaryBeforeTaxed > data.extraHighIncomeTax.higherTaxRate.highTaxRate) {
-      salaryAfterTax += this.highTaxRateCalculation(data, salaryBeforeTaxed);
-      salaryBeforeTaxed = data.extraHighIncomeTax.higherTaxRate.highTaxRate;
+    if (salaryBeforeTaxed > higherTaxRate.fromSalaryTaxed) {
+      salaryAfterTax += this.highTaxRateCalculation(higherTaxRate, salaryBeforeTaxed);
+      salaryBeforeTaxed = higherTaxRate.fromSalaryTaxed;
     }
 
-    if (salaryBeforeTaxed > data.extraHighIncomeTax.lowerTaxRate.highTaxRate) {
-      salaryAfterTax += this.lowerTaxRateCalculation(data, salaryBeforeTaxed);
-      salaryBeforeTaxed = data.extraHighIncomeTax.lowerTaxRate.highTaxRate;
+    if (salaryBeforeTaxed > data.extraHighIncomeTaxes.lowerTaxRate.fromSalaryTaxed) {
+      salaryAfterTax += this.lowerTaxRateCalculation(lowerTaxRate, salaryBeforeTaxed);
+      salaryBeforeTaxed = lowerTaxRate.fromSalaryTaxed;
     }
 
-    salaryAfterTax += this.standardTaxRateCalculation(salaryBeforeTaxed, a);
+    salaryAfterTax += this.standardTaxRateCalculation(salaryBeforeTaxed, basicTaxRate);
 
     return salaryAfterTax;
   }
 
-  highTaxRateCalculation(data: any, salaryBeforeTaxed: any): number {
-    return data.extraHighIncomeTax.higherTaxRate.incomeAfterTaxPercentage * (salaryBeforeTaxed - data.extraHighIncomeTax.higherTaxRate.highTaxRate);
+  highTaxRateCalculation(higherTaxRate: HighIncomeTax, salaryBeforeTaxed: number): number {
+    return higherTaxRate.incomeAfterTaxPercentage * (salaryBeforeTaxed - higherTaxRate.fromSalaryTaxed);
   }
 
-  lowerTaxRateCalculation(data: any, salaryBeforeTaxed: any): number {
-    return data.extraHighIncomeTax.lowerTaxRate.incomeAfterTaxPercentage * (salaryBeforeTaxed - data.extraHighIncomeTax.lowerTaxRate.highTaxRate)
+  lowerTaxRateCalculation(lowerTaxRate: HighIncomeTax, salaryBeforeTaxed: number): number {
+    return lowerTaxRate.incomeAfterTaxPercentage * (salaryBeforeTaxed - lowerTaxRate.fromSalaryTaxed)
   }
 
-  standardTaxRateCalculation(salaryBeforeTaxed: any, a: any): number {
-    return salaryBeforeTaxed * a.incomeAfterTaxPercentage;
+  standardTaxRateCalculation(salaryBeforeTaxed: number, basicTaxRate: Tax): number {
+    return salaryBeforeTaxed * basicTaxRate.incomeAfterTaxPercentage;
   }
 }

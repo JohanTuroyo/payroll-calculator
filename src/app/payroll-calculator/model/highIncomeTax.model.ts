@@ -1,4 +1,4 @@
 export class HighIncomeTax {
-  public highTaxRate: number;
+  public fromSalaryTaxed: number;
   public incomeAfterTaxPercentage: number;
 }

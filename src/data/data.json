@@ -16,15 +16,15 @@
   "incomes": [
     {
       "occupationId": 1,
-      "income": 30000
+      "salary": 30000
     },
     {
       "occupationId": 2,
-      "income": 27000
+      "salary": 27000
     },
     {
       "occupationId": 3,
-      "income": 25000
+      "salary": 25000
     }
   ],
   "cities": [
@@ -37,10 +37,10 @@
       "name": "Gothenburg"
     }
   ],
-  "incomeTaxes": [
+  "basicTaxRates": [
     {
       "incomeYear": 2019,
-      "tax": [
+      "taxes": [
         {
           "cityId": 1,
           "incomeAfterTaxPercentage": 0.7
@@ -53,7 +53,7 @@
     },
     {
       "incomeYear": 2020,
-      "tax": [
+      "taxes": [
         {
           "cityId": 1,
           "incomeAfterTaxPercentage": 0.71
@@ -65,13 +65,13 @@
       ]
     }
   ],
-  "extraHighIncomeTax": {
+  "extraHighIncomeTaxes": {
     "lowerTaxRate": {
-      "highTaxRate": 36000,
+      "fromSalaryTaxed": 36000,
       "incomeAfterTaxPercentage": 0.50
     },
     "higherTaxRate": {
-      "highTaxRate": 45000,
+      "fromSalaryTaxed": 45000,
       "incomeAfterTaxPercentage": 0.30
     }
   },

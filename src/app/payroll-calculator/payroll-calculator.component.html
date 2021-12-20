@@ -6,8 +6,9 @@
       <div class="form-group mb-5">
         <label>Experience ( In Years )</label>
         <input id="experience-input" type="number" min="0" max="100" name="payRollFormModel.experience"
-          class="form-control" [(ngModel)]="payRollFormModel.experience" #experience="ngModel" placeholder="Please enter your Experience"
-          pattern="^$|^([0-9]|[1-9][0-9]|[1][0][0])?" required #rateInput2="ngModel" name="payRollFormModel.experience"
+          class="form-control" [(ngModel)]="payRollFormModel.experience" #experience="ngModel"
+          placeholder="Please enter your Experience" pattern="^$|^([0-9]|[1-9][0-9]|[1][0][0])?" required
+          #rateInput2="ngModel" name="payRollFormModel.experience"
           [ngClass]="{ 'is-invalid': payrollForm.submitted && experience.invalid }" required>
         <div class="invalid-feedback" *ngIf="payrollForm.submitted && experience.invalid">
           <p class="validation-message"
@@ -59,7 +60,7 @@
 
     <div class="form-group">
       <button class="btn btn-primary btn-block">Calculate Salary</button>
-      <h3 *ngIf="salaryAfterTaxes" class="mt-4">Salary After Taxes: {{salaryAfterTaxes}} SEK</h3>
+      <h3 *ngIf="salaryAfterTaxes" class="mt-4">Salary After Taxes In {{salaryAfterTaxes | currency: ' SEK: '}}</h3>
     </div>
   </form>
 </div>

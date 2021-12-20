@@ -1,5 +1,5 @@
-import { City } from "./City.model";
-import { Occupation } from "./Occupation.model";
+import { City } from "./city.model";
+import { Occupation } from "./occupation.model";
 
 export class PayrollFormModel {
   public experience: number;
